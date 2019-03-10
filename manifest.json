@@ -4,10 +4,10 @@
     "description": "Bookmarks",
     "version": "2.1",
     "icons": {
-        "128": "firebase.png"
+        "128": "plug.png"
     },
     "browser_action": {
-        "default_icon": "firebase.png",
+        "default_icon": "plug.png",
         "default_popup": "credentials.html"
     },
     "background": {
@@ -23,6 +23,7 @@
         "https://www.googleapis.com/auth/userinfo.email",
         "https://www.googleapis.com/auth/userinfo.profile"
         ]
-    },
-    "key": "<YOUR_EXTENSION_PUBLIC_KEY>"
+    }
+    // ,
+    // "key": "<YOUR_EXTENSION_PUBLIC_KEY>"
 }
