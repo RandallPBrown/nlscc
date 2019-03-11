@@ -1,5 +1,38 @@
 firebase.initializeApp(config);
 
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+var uiConfig = {
+  callbacks: {
+    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+      // User successfully signed in.
+      // Return type determines whether we continue the redirect automatically
+      // or whether we leave that to developer to handle.
+      // return true;
+      UIkit.modal('#modal-sections').hide();
+    },
+    uiShown: function() {
+      // The widget is rendered.
+      // Hide the loader.
+      document.getElementById('loader').style.display = 'none';
+    }
+  },
+  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+  signInFlow: 'popup',
+  signInSuccessUrl: '<url-to-redirect-to-on-success>',
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+  // Terms of service url.
+  tosUrl: '<your-tos-url>',
+  // Privacy policy url.
+  privacyPolicyUrl: '<your-privacy-policy-url>'
+};
+
+// The start method will wait until the DOM is loaded.
+
+
+
 function initApp() {
   // Listen for auth state changes.
   // [START authstatelistener]
@@ -21,9 +54,14 @@ function initApp() {
     } else {
       // Let's try to get a Google auth token programmatically.
       // [START_EXCLUDE]
+
+      ui.start('#firebaseui-auth-container', uiConfig);
+
+
       document.getElementById('quickstart-button').textContent = 'Sign-in with Google';
       document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
       document.getElementById('quickstart-account-details').textContent = 'null';
+      UIkit.modal('#modal-sections').show();
       // [END_EXCLUDE]
     }
     document.getElementById('quickstart-button').disabled = false;
