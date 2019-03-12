@@ -6,7 +6,7 @@ var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
       // return true;
-      UIkit.modal('#modal-sections').hide();
+      UIkit.modal('#credentials-modal').hide();
     },
     uiShown: function() {
     }
@@ -35,10 +35,10 @@ function initApp() {
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
       var providerData = user.providerData;
-      document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+      // document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
     } else {
       ui.start('#firebaseui-auth-container', uiConfig);
-      UIkit.modal('#modal-sections').show();
+      UIkit.modal('#credentials-modal').show();
     }
   });
   document.getElementById('logout-button').addEventListener('click', logout, false);
